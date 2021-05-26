@@ -1,0 +1,44 @@
+<p>contact-form works!</p>
+<form #f="ngForm" (ngSubmit)="submit(f)">
+    <div ngModelGroup="contact">
+        <div class="from-group">
+            <label for="firstName">FirstName</label>
+            <input [(ngModel)]="firstname" name="firstname" (change)="log(firstname)" class="form-control"
+                type="text" />
+        </div>
+        <div class="from-group">
+            <label for="lastName">LastName</label>
+
+            <input required minlength="4" maxlength="10" pattern="[a-zA-Z]+" ngModel name="lastname" #lastName="ngModel"
+                (change)="logLast(lastName)" id="lastName" class="form-control" id="lastName" type="text" />
+
+            <div class="alert alert-danger" *ngIf="lastName.touched  && !lastName.valid">ce champ est obligatoire!!!
+            </div>
+            <!--<div class="alert alert-danger" *ngIf="lastName.errors.minlength">4 chars!!!</div>
+        <div class="alert alert-danger" *ngIf="lastName.errors.pattern">alpha!!!</div>-->
+
+        </div>
+        <div class="from-group">
+            <label for="comment">Comment</label>
+            <textarea class="form-control" id="comment" type="text"></textarea>
+
+        </div>
+
+        <div class="checkbox">
+            <label for="">
+                <input type="checkbox" ngModel name="subscribe">s'abonner
+            </label>
+        </div>
+        <div class="form-group">
+            <label for="ContactMethod"></label>
+            <select class="form-control" id="ContactMethod" name="ContactMethod" ngModel>
+                <option value=""></option>
+                <option value="" *ngFor="let method of ContactMethods" [value]="method">{{method}}</option>
+            </select>
+        </div>
+
+        <br>
+        <button [disabled]="!f.valid" class="btn btn-primary">Enregistrer</button>
+    </div>
+    </form>
+{{f.value | json}}

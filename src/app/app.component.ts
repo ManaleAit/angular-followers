@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'projetangular';
+  post={
+      title : 'projetangular',
+      isActive: true,
+      format:'lowercase'
+  }
+  maFonction(isActive){
+    console.log("output event: ",isActive);
+  }
 }

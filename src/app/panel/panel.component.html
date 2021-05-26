@@ -1,0 +1,38 @@
+<p>panel works!</p>
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <ng-content select=".header"></ng-content>
+    </div>
+    <div class="panel-body">
+        <ng-content select=".body"></ng-content>
+
+    </div>
+    <div class="panel-body">
+        <div *ngIf="courses.length>0; else coursesTemplate">
+
+            <div *ngFor="let c of courses;index as i ">
+                <p>{{i}} {{c}}</p>
+
+            </div>
+
+            <div *ngFor="let c of courses;even as isEven; first as isFirst; last as isLast  ">
+                <p *ngIf="isEven">paire   {{c}}</p>
+                <p *ngIf="!isEven">impaire   {{c}}</p>
+                <p *ngIf="isFirst">First   {{c}}</p>
+                <p *ngIf="isLast">Last   {{c}}</p>
+            </div>
+
+            <p>crud statique</p>
+            <div *ngFor="let c of courses">
+                {{c}}
+                <button class="btn btn-danger" (click)="delete(c)">delete</button>
+
+            </div>
+        </div>
+        <ng-template #coursesTemplate>
+            pas de cours
+        </ng-template>
+        <p hidden>hello</p>
+    </div>
+    <button class="btn btn-primary"  (click)="addCours()" >ajoute</button>
+</div>

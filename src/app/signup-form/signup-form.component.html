@@ -1,0 +1,35 @@
+<p>signup-form works!</p>
+<form [formGroup]="form">
+   
+        <div class="from-group">
+            <label for="username">username</label>
+            <input 
+            formControlName="username"
+             id="username" 
+             class="form-control"
+             type="text" />
+             <div class="alet alert-danger" *ngIf="form.get('username').touched && form.get('username').invalid">
+                 <div *ngIf="username.errors.required">username is required</div>
+                 <div *ngIf="username.errors.minlength">username doit avoir au moins {{username.errors.minlength.requiredLength}}</div>   
+                 <div *ngIf="username.errors.connotContainSpace">username ne doit pas avoir des espaces</div>
+
+             </div>
+        </div>
+        <div class="from-group">
+            <label for="password">password</label>
+
+            <input 
+            formControlName="password"
+            id="password" 
+            class="form-control"
+            type="text" />
+            <div class="alet alert-danger" *ngIf="password.touched && password.invalid">
+                password is required
+            </div>
+        </div>
+   
+
+        <br>
+        <button class="btn btn-primary">Register</button>
+
+    </form>
